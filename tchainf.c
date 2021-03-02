@@ -14,8 +14,10 @@ void def_buf_push(char **str, int *def_buf_allocated, int *def_buf_pos, char c )
 int main(int argc, char **argv )
 {
 	
-	FILE *tproc=fopen(argv[2], "r" ), *source; //= fopen(argv[3], "r" );
+	FILE *tproc, *source; //= fopen(argv[3], "r" );
 	int mode; int def_buf_allocated = 0; int def_buf_pos = 0; char *def_buf=NULL;
+
+	printf("@\nimport os\nimport sys\nsys.path.append(os.environ.get(\"HOME\")+\"/.tchainf\")\n");
 
 	if(argc < 1 )
 		goto err;
@@ -55,7 +57,6 @@ int main(int argc, char **argv )
 			putchar(c);
 	}
 
-	printf("@\nimport os\nimport sys\nsys.path.append(os.environ.get(\"HOME\")+\"/.tchainf\")\n");
 	printf("\n@main\n");
 	//if(!mode)
 		printf("{gen_head}\n");
