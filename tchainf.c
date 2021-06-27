@@ -153,6 +153,20 @@ int main(int argc, char **argv )
 								putchar('"');
 							state = 0;
 						break;
+						case '{':
+							if(mode)
+							{
+								putchar('\\');
+								putchar('{');
+							}
+							break;
+						case '}':
+							if(mode)
+							{
+								putchar('\\');
+								putchar('}');
+							}
+							break;
 						default:
 							if(mode)
 								putchar(c);
