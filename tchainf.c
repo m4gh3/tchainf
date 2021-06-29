@@ -114,9 +114,22 @@ int main(int argc, char **argv )
 								putchar('"');
 							state = 2;
 							break;
+						case '\\':
+							if(mode)
+								putchar('\\');
+								putchar('\\');
 						case '@':
-								def_buf_push(&def_buf, &def_buf_allocated, &def_buf_pos, '@' );
-								state = 3;
+								d = fgetc(source);
+								if( d != '@' )
+								{
+									def_buf_push(&def_buf, &def_buf_allocated, &def_buf_pos, '@' );
+									state = 3;
+									c = d;
+									goto state_3;
+								}
+								else
+									if(mode)
+										putchar('@');
 							break;
 						default:
 							if(mode)
@@ -144,6 +157,7 @@ int main(int argc, char **argv )
 						case '\\': //this is deceivingly useless: what happens if you have \"
 							if(mode)
 							{
+								putchar('\\');
 								putchar('\\');
 								putchar(fgetc(source));
 							}
@@ -173,6 +187,7 @@ int main(int argc, char **argv )
 					}
 				break;
 				case 3:
+					state_3:
 					switch(c)
 					{
 						case '\\': //this is deceivingly useless: what happens if you have \"
