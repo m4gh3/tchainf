@@ -118,6 +118,7 @@ int main(int argc, char **argv )
 							if(mode)
 								putchar('\\');
 								putchar('\\');
+								break;
 						case '@':
 								d = fgetc(source);
 								if( d != '@' )
